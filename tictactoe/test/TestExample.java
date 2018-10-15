@@ -12,6 +12,12 @@ public class TestExample {
     @Test
     public void testModel() {
         Model model = new Model();
+        model.initializeBoard();
+        //test for initial state
+        assertEquals("", model.getWinner());
+        assertEquals(false, model.getWinState());
+        assertEquals("X", model.getPlayerTurn());
+        assertEquals(9, model.getTurnsLeft());
     }
 
     @Test
