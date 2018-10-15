@@ -29,7 +29,7 @@ public class Controller {
         return board.getBoardSize();
     }
 
-    public String getPlayerMove() {
+    private String getPlayerMove() {
         int row;
         int column;
 
@@ -78,13 +78,6 @@ public class Controller {
     }
 
     public static void main(String[] args) {
-        Controller control = new Controller();
-        String winner = "";
-        Scanner sc = new Scanner(System.in);
-
-        while (winner.equals("")) {
-            winner = control.getPlayerMove();
-        }
 
     }
 }

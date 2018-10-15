@@ -37,7 +37,7 @@ public class View {
         playerTurn.setText("Player 1 to play 'X'");
     }
 
-    public void createBoard() {
+    private void createBoard() {
         for (int row = 0; row < controller.getBoardSize(); row++) {
             for (int column = 0; column < controller.getBoardSize(); column++) {
                 blocks[row][column] = new JButton();
@@ -48,7 +48,7 @@ public class View {
         }
     }
 
-    public void initializeListeners() {
+    private void initializeListeners() {
         for (int row = 0; row < controller.getBoardSize(); row++) {
             for (int column = 0; column < controller.getBoardSize(); column++) {
                 blocks[row][column].addActionListener(e -> {

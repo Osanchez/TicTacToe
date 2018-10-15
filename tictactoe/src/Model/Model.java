@@ -251,17 +251,6 @@ public class Model {
     }
 
     public static void main(String args[]) {
-        String[][] board = {
-        {"X", "X", "X"},
-        {"O", "X", "O"},
-        {"X", "O", "O"}
-        };
 
-         Model testBoard = new Model();
-         testBoard.setBoardState(board);
-         testBoard.printBoard();
-         System.out.println(testBoard.isHorizontalWin()); //true
-         System.out.println(testBoard.isVerticalWin()); //false
-         System.out.println(testBoard.isDiagonalWin()); //true
     }
 }
