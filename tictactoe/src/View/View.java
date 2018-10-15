@@ -12,7 +12,7 @@ public class View {
     private JPanel game;
     private JTextArea playerTurn = new JTextArea();
 
-    private View() {
+    public View() {
         this.gui.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         gui.setSize(new Dimension(500, 350));
         gui.setResizable(true);
