@@ -1,4 +1,5 @@
 import org.junit.Test;
+import static org.junit.Assert.*;
 import View.View;
 
 /**
@@ -9,6 +10,7 @@ public class TestView {
     @Test
     public void testView() {
         View view = new View();
-
+        view.createBoard();
+        //view.gui.setVisible(true);
     }
 }

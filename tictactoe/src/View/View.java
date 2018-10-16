@@ -37,7 +37,7 @@ public class View {
         playerTurn.setText("Player 1 to play 'X'");
     }
 
-    private void createBoard() {
+    public void createBoard() {
         for (int row = 0; row < controller.getBoardSize(); row++) {
             for (int column = 0; column < controller.getBoardSize(); column++) {
                 blocks[row][column] = new JButton();
@@ -46,6 +46,7 @@ public class View {
                 this.game.add(blocks[row][column]);
             }
         }
+        this.initializeListeners();
     }
 
     private void initializeListeners() {
@@ -141,7 +142,7 @@ public class View {
     public static void main(String[] args) {
         View view = new View();
         view.createBoard();
-        view.initializeListeners();
+
         view.gui.setVisible(true);
         //support for placing piece via terminal
         //view.placePieceTerminal();
