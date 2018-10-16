@@ -54,7 +54,7 @@ public class Controller {
 
     //if move is valid, places piece in requested area by updating model return true if piece was placed
     public boolean placePiece(String player, int row, int column) {
-        if (board.getTurnsLeft() > 0) {
+        if (board.getTurnsLeft() > 0 && player.equals(board.getPlayerTurn())) {
             if (board.getPiece(row, column).equals("")) {
                 //place piece
                 board.setPiece(player, row, column);

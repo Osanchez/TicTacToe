@@ -1,11 +1,12 @@
 package View;
 
 import Controller.Controller;
-
 import javax.swing.*;
 import java.awt.*;
+import java.util.Scanner;
 
 public class View {
+    private Scanner sc = new Scanner(System.in);
     private Controller controller = new Controller();
     private JFrame gui = new JFrame("Tic Tac Toe");
     private JButton[][] blocks = new JButton[controller.getBoardSize()][controller.getBoardSize()];
@@ -24,6 +25,7 @@ public class View {
         JPanel options = new JPanel(new FlowLayout());
         JButton reset = new JButton("Reset");
         reset.addActionListener(e -> resetGame());
+
         options.add(reset);
 
         JPanel messages = new JPanel(new FlowLayout());
@@ -63,34 +65,66 @@ public class View {
         }
     }
 
+    private void placePieceTerminal() {
+        int requestedRow;
+        int requestedColumn;
+        System.out.print("Row: ");
+        requestedRow = Integer.parseInt(sc.next());
+        System.out.print("Column: ");
+        requestedColumn = Integer.parseInt(sc.next());
+        System.out.println();
+
+        String currentPlayer = controller.getPlayerTurn();
+        boolean placed = controller.placePiece(currentPlayer, requestedRow, requestedColumn);
+
+        if (placed) {
+            blocks[requestedRow][requestedColumn].setText(currentPlayer);
+            checkGame();
+        }
+
+        if (controller.getPlayerTurn().equals("X")) {
+            playerTurn.setText("'X': Player 1");
+        } else if (controller.getPlayerTurn().equals("O")) {
+            playerTurn.setText("'O': Player 2");
+        }
+        if(!controller.getWinState())
+            placePieceTerminal();
+    }
+
     private boolean placePiece(Object e) {
+        String currentPlayer = controller.getPlayerTurn();
+
         for (int row = 0; row < controller.getBoardSize(); row++) {
             for (int column = 0; column < controller.getBoardSize(); column++) {
-                if(blocks[row][column] == e) {
-                    String currentPlayer = controller.getPlayerTurn();
+                if (blocks[row][column] == e) {
 
-                    boolean placed = controller.placePiece(controller.getPlayerTurn(), row, column);
-                    if(placed) {
+                    boolean placed = controller.placePiece(currentPlayer, row, column);
+                    if (placed) {
                         blocks[row][column].setText(currentPlayer);
-                    }
-                    if(controller.getWinState()) {
-                        String winner = controller.getWinner();
-                        switch (winner) {
-                            case "X":
-                                this.playerTurn.setText("Player 1 wins!");
-                                break;
-                            case "O":
-                                this.playerTurn.setText("Player 2 wins!");
-                                break;
-                            default:
-                                this.playerTurn.setText("Game ends in a draw");
-                                break;
-                        }
-                        endGame();
-                        return true;
+                        return checkGame();
                     }
                 }
             }
+        }
+        return false;
+    }
+
+    private boolean checkGame() {
+        if (controller.getWinState()) {
+            String winner = controller.getWinner();
+            switch (winner) {
+                case "X":
+                    this.playerTurn.setText("Player 1 wins!");
+                    break;
+                case "O":
+                    this.playerTurn.setText("Player 2 wins!");
+                    break;
+                default:
+                    this.playerTurn.setText("Game ends in a draw");
+                    break;
+            }
+            endGame();
+            return true;
         }
         return false;
     }
@@ -102,7 +136,6 @@ public class View {
             }
         }
     }
-
 
     private void resetGame() {
         for (int row = 0; row < controller.getBoardSize(); row++) {
@@ -121,6 +154,7 @@ public class View {
         view.createBoard();
         view.initializeListeners();
         view.gui.setVisible(true);
+        view.placePieceTerminal();
     }
 
 }
