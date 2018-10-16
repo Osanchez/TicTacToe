@@ -3,10 +3,8 @@ package View;
 import Controller.Controller;
 import javax.swing.*;
 import java.awt.*;
-import java.util.Scanner;
 
 public class View {
-    private Scanner sc = new Scanner(System.in);
     private Controller controller = new Controller();
     private JFrame gui = new JFrame("Tic Tac Toe");
     private JButton[][] blocks = new JButton[controller.getBoardSize()][controller.getBoardSize()];
@@ -145,7 +143,8 @@ public class View {
         view.createBoard();
         view.initializeListeners();
         view.gui.setVisible(true);
-        view.placePieceTerminal();
+        //support for placing piece via terminal
+        //view.placePieceTerminal();
     }
 
 }
