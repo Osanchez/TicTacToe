@@ -29,7 +29,7 @@ public class Controller {
         return board.getBoardSize();
     }
 
-    private String getPlayerMove() {
+    public boolean getPlayerMove() {
         int row;
         int column;
 
@@ -45,9 +45,8 @@ public class Controller {
         System.out.print("Column: ");
         column = Integer.parseInt(this.sc.next());
 
-        this.placePiece(getPlayerTurn(), row, column);
+        return this.placePiece(getPlayerTurn(), row, column);
 
-        return board.getWinner();
     }
 
 
@@ -64,7 +63,6 @@ public class Controller {
                 if(this.isWinState) {
                     this.winner = board.getWinner();
                 }
-                //finish
                 return true;
             } else {
                 return false;

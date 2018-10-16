@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public class Model {
     //board information
-    private int rows = 3; //rows on the board
-    private int columns = 3; //columns on the board
+    private final int rows = 3; //rows on the board
+    private final int columns = 3; //columns on the board
     private String[][] board; //initialize board with default size
 
     //board rules/state
@@ -55,11 +55,6 @@ public class Model {
         return this.turnsLeft;
     }
 
-    //sets board size
-    public void setBoardSize(int size) { //set board size, maintain n x n shape.
-        this.rows = size;
-        this.columns = size;
-    }
 
     public void setPlayerWiner(String winner) {
         this.playerWinner = winner;

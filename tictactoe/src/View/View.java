@@ -66,19 +66,10 @@ public class View {
     }
 
     private void placePieceTerminal() {
-        int requestedRow;
-        int requestedColumn;
-        System.out.print("Row: ");
-        requestedRow = Integer.parseInt(sc.next());
-        System.out.print("Column: ");
-        requestedColumn = Integer.parseInt(sc.next());
-        System.out.println();
 
-        String currentPlayer = controller.getPlayerTurn();
-        boolean placed = controller.placePiece(currentPlayer, requestedRow, requestedColumn);
+        boolean placed = controller.getPlayerMove();
 
         if (placed) {
-            blocks[requestedRow][requestedColumn].setText(currentPlayer);
             checkGame();
         }
 
